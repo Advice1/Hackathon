@@ -1,18 +1,18 @@
 import {Component, OnInit, signal, WritableSignal} from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {Router} from "@angular/router";
 import {take} from "rxjs";
 import {createEmbeddingContext} from "amazon-quicksight-embedding-sdk";
-import {Router} from "@angular/router";
 import {ManuComponent} from "../manu/manu.component";
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-dashboard-one',
   standalone: true,
   imports: [HttpClientModule,ManuComponent],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  templateUrl: './dashboard-one.component.html',
+  styleUrl: './dashboard-one.component.css'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardOneComponent implements OnInit{
 
   constructor(private http: HttpClient,private route:Router) { }
 
@@ -29,8 +29,8 @@ export class DashboardComponent implements OnInit {
         take(1),
       )
       .subscribe((data: any) => {
-        console.log(data.body.url1);
-        this.Dashboard( data.body.url1)});
+        console.log(data.body.url2);
+        this.Dashboard( data.body.url2)});
   }
 
   public async Dashboard(embeddedURL: any) {
@@ -45,4 +45,5 @@ export class DashboardComponent implements OnInit {
     const embeddingContext = await createEmbeddingContext();
     this.dashboard = embeddingContext.embedDashboard(frameOptions);
   }
+
 }

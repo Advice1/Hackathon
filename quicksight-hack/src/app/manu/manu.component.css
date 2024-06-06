@@ -1,0 +1,14 @@
+.card{
+  border: none;
+  max-width: 90%;
+}
+.card{
+  border: none;
+  &.grow {
+    transition: all .2s ease-in-out ;
+    &:hover {
+      z-index: 1;
+      transform: scale(1.1);
+    }
+  }
+}
