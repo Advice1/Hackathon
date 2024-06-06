@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CommonModule, NgIf} from "@angular/common";
+import {AmplifyAuthenticatorModule} from "@aws-amplify/ui-angular";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    AmplifyAuthenticatorModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -20,6 +22,8 @@ export class HomeComponent {
     email: ['',[Validators.required,Validators.max(60),Validators.email]],
     password: ['',[Validators.required,Validators.minLength(5)]]
   })
+
+
 
   GetPassword():any{
     return this.Login.get('password');

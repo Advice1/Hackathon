@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpClient,HttpClientModule} from "@angular/common/http";
+import {Component, OnInit, signal, WritableSignal} from '@angular/core';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {take} from "rxjs";
-import {createEmbeddingContext, EmbeddingContext} from "amazon-quicksight-embedding-sdk";
+import {createEmbeddingContext} from "amazon-quicksight-embedding-sdk";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,23 +13,23 @@ import {createEmbeddingContext, EmbeddingContext} from "amazon-quicksight-embedd
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private route:Router) { }
 
   loadingError = false;
-  dashboard: any;
+  dashboard:WritableSignal<any> = signal('');
 
   ngOnInit() {
     this.GetDashboardURL();
   }
 
   public GetDashboardURL() {
-    this.http.get("https://fakestoreapi.com/products/1")
+    this.http.get("https://26f7jbchia.execute-api.us-east-1.amazonaws.com/dev")
       .pipe(
         take(1),
       )
       .subscribe((data: any) => {
         console.log(data);
-        this.Dashboard("https://angular.dev/guide/forms/reactive-forms")});
+        this.Dashboard( data.body)});
   }
 
   public async Dashboard(embeddedURL: any) {

@@ -17,6 +17,7 @@
       <input type="password" class="form-control" formControlName="password" id="inputPassword3">
       <div *ngIf="GetPassword().touched&&GetPassword().invalid ">
         <small *ngIf="GetPassword().hasError('required')" class="text-danger">required in here..</small>
+        <small *ngIf="GetPassword().hasError('minLength')" class="text-danger">Minimum length is 6..</small>
       </div>
     </div>
   </div>
@@ -55,4 +56,16 @@
   </div>
   <button type="submit" [disabled]="!Login.valid" class="btn btn-primary text-centre">Sign in</button>
 </form>
+</div>
+<div>
+  <amplify-authenticator [loginMechanisms]="['email']">
+    <ng-template
+      amplifySlot="authenticated"
+      let-user="user"
+      let-signOut="signOut"
+    >
+      <h2>Welcome, {{ user.username }}!</h2>
+      <button (click)="signOut()">Sign Out</button>
+    </ng-template>
+  </amplify-authenticator>
 </div>
