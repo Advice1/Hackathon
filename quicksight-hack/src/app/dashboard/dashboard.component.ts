@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
     this.GetDashboardURL();
   }
 
-  public GetDashboardURL() {
+ GetDashboardURL() {
     this.http.get("https://26f7jbchia.execute-api.us-east-1.amazonaws.com/dev")
       .pipe(
         take(1),
@@ -45,4 +45,6 @@ export class DashboardComponent implements OnInit {
     const embeddingContext = await createEmbeddingContext();
     this.dashboard = embeddingContext.embedDashboard(frameOptions);
   }
+
+
 }

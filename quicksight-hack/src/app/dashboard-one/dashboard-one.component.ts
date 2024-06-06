@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {take} from "rxjs";
 import {createEmbeddingContext} from "amazon-quicksight-embedding-sdk";
 import {ManuComponent} from "../manu/manu.component";
+import {jsPDF} from "jspdf";
+import html2canvas from "html2canvas";
 
 @Component({
   selector: 'app-dashboard-one',
@@ -22,7 +24,16 @@ export class DashboardOneComponent implements OnInit{
   ngOnInit() {
     this.GetDashboardURL();
   }
+public ConvertToPDF() {
+  html2canvas(document.body).then(canvas=> {
 
+    let pdf = new jsPDF("p", "mm", "a4");
+    let width = pdf.internal.pageSize.getWidth();
+    var height = canvas.height * width / canvas.width;
+    pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, width, height);
+    pdf.save("download.pdf") //save thml
+   })
+  }
   public GetDashboardURL() {
     this.http.get("https://26f7jbchia.execute-api.us-east-1.amazonaws.com/dev")
       .pipe(

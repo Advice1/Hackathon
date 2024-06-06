@@ -9,7 +9,7 @@ import {DashboardOneComponent} from "./dashboard-one/dashboard-one.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,RouterLink ,DashboardComponent, HomeComponent, ManuComponent, DashboardOneComponent],
+  imports: [CommonModule, RouterOutlet, DashboardComponent, HomeComponent, ManuComponent, DashboardOneComponent, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

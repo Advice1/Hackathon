@@ -14,16 +14,13 @@ export class ManuComponent {
   }
 
   FirstDashboard() {
-    alert("Hello World! 1")
-    this.router.navigateByUrl('/dashboard').then(r => console.log(r))
+    this.router.navigateByUrl('/dashboard')
   }
   SecondDashboard() {
     this.router.navigateByUrl('/FirstDashboard').then(r => console.log(r))
-    alert("Hello World! 1")
   }
   ThirdDashboard() {
     this.router.navigateByUrl('/dashboard').then(r => console.log(r))
-    alert("Hello World! 1")
   }
   FourthDashboard() {
     this.router.navigateByUrl('/dashboard').then(r => console.log(r))
