@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient,HttpClientModule} from "@angular/common/http";
 import {take} from "rxjs";
 import {createEmbeddingContext, EmbeddingContext} from "amazon-quicksight-embedding-sdk";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [HttpClientModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -22,11 +22,13 @@ export class DashboardComponent implements OnInit {
   }
 
   public GetDashboardURL() {
-    this.http.get("http://fakestoreapi.com")
+    this.http.get("https://fakestoreapi.com/products/1")
       .pipe(
         take(1),
       )
-      .subscribe((data: any) => this.Dashboard(data.url));
+      .subscribe((data: any) => {
+        console.log(data);
+        this.Dashboard("https://angular.dev/guide/forms/reactive-forms")});
   }
 
   public async Dashboard(embeddedURL: any) {
