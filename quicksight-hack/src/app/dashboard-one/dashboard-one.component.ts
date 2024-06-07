@@ -29,8 +29,12 @@ public ConvertToPDF() {
 
     let pdf = new jsPDF("p", "mm", "a4");
     let width = pdf.internal.pageSize.getWidth();
+    pdf.setPage(3)
+    pdf.internal.pageSize;
+    console.log("test",pdf.internal.pageSize)
+    var pageSize = pdf.internal.pageSize;
     var height = canvas.height * width / canvas.width;
-    pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, width, height);
+    //pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, , height);
     pdf.save("download.pdf") //save thml
    })
   }
