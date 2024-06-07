@@ -24,20 +24,23 @@ export class DashboardOneComponent implements OnInit{
   ngOnInit() {
     this.GetDashboardURL();
   }
-public ConvertToPDF() {
-  html2canvas(document.body).then(canvas=> {
 
-    let pdf = new jsPDF("p", "mm", "a4");
-    let width = pdf.internal.pageSize.getWidth();
-    pdf.setPage(3)
-    pdf.internal.pageSize;
-    console.log("test",pdf.internal.pageSize)
-    var pageSize = pdf.internal.pageSize;
-    var height = canvas.height * width / canvas.width;
-    //pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, , height);
-    pdf.save("download.pdf") //save thml
-   })
+
+  public ConvertToPDF() {
+    let element:any = document.getElementById("dashboardContainer"); // Assuming the main content is in an element with id "content-to-print"
+    html2canvas(element, {
+      scale: 2, // Increase the scale to improve image quality
+      useCORS: true, // Enable CORS to handle external resources
+    }).then((canvas) => {
+      let pdf = new jsPDF("p", "mm", "a4");
+      let width = pdf.internal.pageSize.getWidth();
+      let height = canvas.height * (width / canvas.width);
+      pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, width, height);
+      pdf.save("download.pdf");
+    });
   }
+
+
   public GetDashboardURL() {
     this.http.get("https://26f7jbchia.execute-api.us-east-1.amazonaws.com/dev")
       .pipe(

@@ -10,7 +10,6 @@ export const routes: Routes = [
   {path:'dashboard', component: DashboardComponent},
   {path:'FirstDashboard', component: DashboardOneComponent},
   {path:'SecondDashboard', component: DashboardTwoComponent},
-  {path: 'dashboard', loadComponent: () => import('./dashboard-one/dashboard-one.component').then(m => m.DashboardOneComponent) },
 
 ];
 

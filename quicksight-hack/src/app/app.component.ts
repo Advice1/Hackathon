@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {HomeComponent} from "./home/home.component";
 import {ManuComponent} from "./manu/manu.component";
 import {DashboardOneComponent} from "./dashboard-one/dashboard-one.component";
+import {take} from "rxjs";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
